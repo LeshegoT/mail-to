@@ -126,7 +126,7 @@ export default function Home() {
       {/* Formsubmit.co Form */}
       {formsubmitVisible && (
         <form
-          action="https://formsubmit.co/leshegot98@gmail.com"
+          action="https://formsubmit.co/leshegotest@gmail.com"
           method="POST"
           style={{ maxWidth: '400px', width: '100%' }}
         >

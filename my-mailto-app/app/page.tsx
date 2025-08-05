@@ -5,6 +5,7 @@ import { useForm, ValidationError } from '@formspree/react';
 
 export default function Home() {
   const [formVisible, setFormVisible] = useState(false);
+  const [formsubmitVisible, setFormsubmitVisible] = useState(false);
   const [state, handleSubmit] = useForm("mblkzyra");
 
   const email = "someone@example.com";
@@ -41,11 +42,14 @@ export default function Home() {
         Send Email
       </a>
 
-      {/* Toggle Form Button */}
+      {/* Toggle Formspree Form Button */}
       <button
-        onClick={() => setFormVisible(!formVisible)}
+        onClick={() => {
+          setFormVisible(!formVisible);
+          setFormsubmitVisible(false); // Hide the other form
+        }}
         style={{
-          marginBottom: '2rem',
+          marginBottom: '1rem',
           padding: '0.75rem 1.5rem',
           backgroundColor: '#555',
           color: 'white',
@@ -55,13 +59,33 @@ export default function Home() {
           cursor: 'pointer'
         }}
       >
-        {formVisible ? 'Hide Form' : 'Open Contact Form'}
+        {formVisible ? 'Hide Formspree Form' : 'Open Formspree Form'}
+      </button>
+
+      {/* Toggle Formsubmit.co Form Button */}
+      <button
+        onClick={() => {
+          setFormsubmitVisible(!formsubmitVisible);
+          setFormVisible(false); // Hide the other form
+        }}
+        style={{
+          marginBottom: '2rem',
+          padding: '0.75rem 1.5rem',
+          backgroundColor: '#777',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '1rem',
+          cursor: 'pointer'
+        }}
+      >
+        {formsubmitVisible ? 'Hide Formsubmit.co Form' : 'Open Formsubmit.co Form'}
       </button>
 
       {/* Formspree Form */}
       {formVisible && (
         <form onSubmit={handleSubmit} style={{ maxWidth: '400px', width: '100%' }}>
-          {state.succeeded && <p>Thanks for reaching out!</p>}
+          {state.succeeded && <p>Thanks for reaching out via Formspree!</p>}
 
           <label htmlFor="email">Email Address</label>
           <input
@@ -94,7 +118,57 @@ export default function Home() {
               cursor: 'pointer'
             }}
           >
-            Submit
+            Submit (Formspree)
+          </button>
+        </form>
+      )}
+
+      {/* Formsubmit.co Form */}
+      {formsubmitVisible && (
+        <form
+          action="https://formsubmit.co/leshegot98"
+          method="POST"
+          style={{ maxWidth: '400px', width: '100%' }}
+        >
+          {/* IMPORTANT: Replace "your@email.com" with your actual email address */}
+          <label htmlFor="name-formsubmit">Name</label>
+          <input
+            type="text"
+            id="name-formsubmit"
+            name="name"
+            required
+            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+          />
+          
+          <label htmlFor="email-formsubmit">Email Address</label>
+          <input
+            type="email"
+            id="email-formsubmit"
+            name="email"
+            required
+            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+          />
+          
+          <label htmlFor="message-formsubmit">Message</label>
+          <textarea
+            id="message-formsubmit"
+            name="message"
+            required
+            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+          />
+
+          <button
+            type="submit"
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#1a73e8', // A slightly different color for distinction
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Send (Formsubmit.co)
           </button>
         </form>
       )}

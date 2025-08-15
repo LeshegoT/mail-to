@@ -82,6 +82,25 @@ export default function Home() {
         {formsubmitVisible ? 'Hide Formsubmit.co Form' : 'Open Formsubmit.co Form'}
       </button>
 
+      {/* Google Button */}
+      <a
+        href="https://www.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          marginBottom: '2rem',
+          padding: '0.75rem 1.5rem',
+          backgroundColor: '#4285F4', // Google's primary color
+          color: 'white',
+          textDecoration: 'none',
+          borderRadius: '8px',
+          fontSize: '1rem',
+          cursor: 'pointer'
+        }}
+      >
+        Open Google
+      </a>
+
       {/* Formspree Form */}
       {formVisible && (
         <form onSubmit={handleSubmit} style={{ maxWidth: '400px', width: '100%' }}>
